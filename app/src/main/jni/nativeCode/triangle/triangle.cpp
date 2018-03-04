@@ -1,19 +1,3 @@
-/*
- *    Copyright 2016 Anand Muralidhar
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 #include "myShader.h"
 #include "triangle.h"
 #include "myGLFunctions.h"
@@ -35,9 +19,25 @@ void Triangle::PerformGLInits() {
 
     //specify 3 vertices of the triangle
     static const GLfloat    vertexBufferData[] = {
-            -1.0f, -1.0f, 0.0f,
-            1.0f, -1.0f, 0.0f,
-            0.0f,  1.0f, 0.0f
+            -0.2f, 0.0f, 0.0f,
+            0.2f, 0.0f, 0.0f,
+            0.0f, 0.2f, 0.0f,
+
+            0.4f, -0.2f, 0.0f,
+            -0.4f, -0.2f, 0.0f,
+            0.0f, 0.0f, 0.0f,
+
+            0.6f, -0.4f, 0.0f,
+            -0.6f, -0.4f, 0.0f,
+            0.0f, -0.2f, 0.0f,
+
+            -0.1f, -0.4f, 0.0f,
+            -0.1f, -0.6f, 0.0f,
+            0.1f, -0.4f, 0.0f,
+
+            -0.1f, -0.6f, 0.0f,
+            0.1f, -0.6f, 0.0f,
+            0.1f, -0.4f, 0.0f
     };
 
     // Generate a vertex buffer and load the vertices into it
@@ -47,6 +47,22 @@ void Triangle::PerformGLInits() {
 
     //specify colors of the 3 vertices
     static const GLfloat colorBufferData[] = {
+            0.0f, 1.0f, 0.0f, //green
+            0.0f, 1.0f, 0.0f, //green
+            0.0f, 0.0f, 1.0f,  //blue
+
+            0.0f, 1.0f, 0.0f, //green
+            0.0f, 1.0f, 0.0f, //green
+            0.0f, 0.0f, 1.0f,  //blue
+
+            0.0f, 1.0f, 0.0f, //green
+            0.0f, 1.0f, 0.0f, //green
+            0.0f, 0.0f, 1.0f,  //blue
+
+            0.0f, 1.0f, 0.0f, //green
+            0.0f, 1.0f, 0.0f, //green
+            0.0f, 0.0f, 1.0f,  //blue
+
             0.0f, 1.0f, 0.0f, //green
             0.0f, 1.0f, 0.0f, //green
             0.0f, 0.0f, 1.0f  //blue
@@ -93,7 +109,7 @@ void Triangle::RenderTriangle() {
     glVertexAttribPointer( colorAttribute, 3, GL_FLOAT, GL_FALSE, 0, (void*)0 );
 
     // Draw the colorful triangle
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glDrawArrays(GL_TRIANGLES, 0, 15);
     glDisableVertexAttribArray(vertexAttribute);
     glDisableVertexAttribArray(colorAttribute);
 }
@@ -125,7 +141,7 @@ void Triangle::Render() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     RenderTriangle();
-    AnimateTriangle();
+    //AnimateTriangle();
     CheckGLError("Triangle::Render");
 
 }
